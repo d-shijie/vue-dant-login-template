@@ -1,0 +1,10 @@
+.el-button {
+  background-color: $button-color !important;
+  border: $border !important;
+  color: #fff !important;
+}
+
+.el-button:hover {
+  background-color: $button-color-active !important;
+  color: #fff !important;
+}
