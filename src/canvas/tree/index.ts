@@ -1,3 +1,4 @@
+// 存在问题
 interface IOptions {
   startX: number;
   startY: number;

@@ -83,7 +83,6 @@ const loginState = reactive({
         }
         storage.set(TOKEN, res.data.data.token)
         router.push('/dashboard')
-        ElMessage.success('登录成功')
       })
     })
   }
@@ -97,7 +96,7 @@ onMounted(() => {
 })
 const createCaptcha = () => {
   captchaLoading.value = true
-  getCaptcha().then(res => {
+  getCaptcha().then((res: any) => {
     loginState.captchaImg = res.data.data.captcha
     captchaLoading.value = false
   })
