@@ -1,23 +1,28 @@
 import { defineStore } from "pinia";
 interface IState {
-  name: string;
-  age: number;
-  sex: string;
+  username: string;
+  token: string;
+  role: string;
+  info?: any;
 }
 export const useUserStore = defineStore("user", {
   state: (): IState => {
     return {
-      name: "张三",
-      age: 18,
-      sex: "男",
+      username: "",
+      token: "",
+      role: "",
+      info: {},
     };
   },
   actions: {
-    changeName(name: string) {
-      this.name = name;
+    SET_USERNAME(username: string) {
+      this.username = username;
     },
-    addAge() {
-      this.age++;
+    SET_ROLE(role: string) {
+      this.role = role;
+    },
+    SET_TOKEN(token: string) {
+      this.token = token;
     },
   },
 });

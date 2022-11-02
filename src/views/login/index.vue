@@ -23,12 +23,14 @@
                 <el-input v-model="loginState.loginForm.captcha" size="large" :prefix-icon="Message"></el-input>
               </el-col>
               <el-col :span="6">
-                <img style="width:100%;height:40px" src="@/assets/captcha.png" alt="">
+                <el-image v-loading="captchaLoading" class="captcha" style="width:100%;height:40px"
+                  @click="createCaptcha" :src="loginState.captchaImg" alt="">
+                </el-image>
               </el-col>
             </el-row>
           </el-form-item>
           <div style="width:100%">
-            <el-button size="large" style="width:100%;" :loading="loading" @click="loginState.login">登 录</el-button>
+            <el-button size="large" style="width:100%;" :loading="loading" @click="loginState.userLogin">登 录</el-button>
           </div>
           <div class="forget_register">
             <span>忘记密码</span>
@@ -42,54 +44,47 @@
 
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue';
-import { init } from './render'
+import { init } from '@/canvas/skyStar/render'
 import { User, Lock, Message } from '@element-plus/icons-vue'
+import { TOKEN } from '@/stroage/stroage_types'
+import { login, getCaptcha } from '@/api/login'
+import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router';
+import storage from 'store'
+const router = useRouter()
 const loginFormRef = ref()
 const loading = ref(false)
-// 注册/修改密码复杂度验证
-// const checkPassword = (rule: any, value: any, callback: any) => {
-//   if (!value) {
-//     return callback(new Error('请输入密码'))
-//   }
-//   if (value.length < 6) {
-//     callback(new Error('密码长度必须大于等于六位数'))
-//   } else {
-//     const regex1 = /^\d+$/
-//     const regex2 = /^[A-Za-z]+$/
-//     const regex3 = /^[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、]+$/
-//     if (regex1.test(value) || regex2.test(value) || regex3.test(value)) {
-//       callback('弱爆了')
-//       callback()
-//     } else if (/^[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、\d]+$/.test(value) || /^[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、A-Za-z]+$/.test(value) || /^[A-Za-z\d]+$/.test(value)) {
-//       callback('还不错')
-//       callback()
-//     } else if (/^[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、A-Za-z\d]+$/.test(
-//       value)) {
-//       callback('太牛了')
-//       callback()
-//     }
-//   }
-// }
+const captchaLoading = ref(false)
 const loginState = reactive({
+  captchaImg: '',
   loginForm: {
-    username: '',
-    password: '',
-    captcha: ''
+    username: 'admin',
+    password: 'admin',
+    captcha: 'dant'
   },
   loginRule: {
     username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
     password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
     captcha: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
   },
-  login: (): void => {
+  userLogin: (): void => {
     loginFormRef.value.validate((valid: boolean) => {
       if (!valid) {
         return
       }
       loading.value = true
-      setTimeout(() => {
+      login(
+        loginState.loginForm
+      ).then(res => {
         loading.value = false
-      }, 2000)
+        if (!res.data.data) {
+          ElMessage.error(res.data)
+          return
+        }
+        storage.set(TOKEN, res.data.data.token)
+        router.push('/dashboard')
+        ElMessage.success('登录成功')
+      })
     })
   }
 })
@@ -100,6 +95,14 @@ onMounted(() => {
   const height = document.documentElement.clientHeight
   init(canvas, width, height, { num: 88 })
 })
+const createCaptcha = () => {
+  captchaLoading.value = true
+  getCaptcha().then(res => {
+    loginState.captchaImg = res.data.data.captcha
+    captchaLoading.value = false
+  })
+}
+createCaptcha()
 </script>
   
 <style scoped lang="scss">
@@ -153,5 +156,9 @@ onMounted(() => {
   width: 100%;
   justify-content: space-between;
   height: 40px;
+
+  img {
+    cursor: pointer;
+  }
 }
 </style>
