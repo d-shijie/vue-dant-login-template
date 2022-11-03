@@ -1,7 +1,9 @@
 <template>
   <div>
+    <!-- 背景canvas -->
     <canvas id="canvas_login" style="display:block">
     </canvas>
+    <!-- 切换登录方式 -->
     <div class="login-card">
       <el-tabs v-model="activeName" class="demo-tabs">
         <el-tab-pane label="账号密码登录" name="UserLogin">
@@ -13,8 +15,10 @@
         <el-tab-pane label="手机登录" name="PhoneLogin">
           <PhoneLogin />
         </el-tab-pane>
+        <el-tab-pane label="二维码登录" name="QrLogin">
+          <QrLogin />
+        </el-tab-pane>
       </el-tabs>
-
     </div>
   </div>
 
@@ -25,6 +29,7 @@ import { init } from '@/canvas/skyStar/render'
 import UserLogin from './user-login.vue'
 import FaceLogin from './face-login.vue'
 import PhoneLogin from './phone-login.vue';
+import QrLogin from './qr-login.vue';
 const activeName = ref('UserLogin')
 
 onMounted(() => {

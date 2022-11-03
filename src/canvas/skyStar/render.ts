@@ -4,29 +4,31 @@ interface IStarIptions {
   r1: number; // 外圆半径
   r2: number; // 内圆半径
   num: number; // 几边形
-  fillStyle: string;
+  fillStyle: string; // 填充颜色
 }
 export function init(
   ele: HTMLCanvasElement,
-  width: number,
-  height: number,
-  options: { num: number; bgcStyle?: any }
+  width: number, // 画布宽度
+  height: number, // 画布高度
+  options: { num: number; bgcStyle?: any } // num星星数量
 ) {
   const canvas = ele;
   canvas.width = width;
   canvas.height = height;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+  // 默认背景风格
   let defaultBgcStyle: any = null;
   defaultBgcStyle = ctx.createLinearGradient(0, 0, 0, width);
   defaultBgcStyle.addColorStop(0, "#000");
   defaultBgcStyle.addColorStop(1.0, "#098");
+  // 星星内部属性
   const stars: {
     x: number;
     y: number;
     r1: number;
     r2: number;
-    vs: number;
-    addVs: number;
+    vs: number; // 透明度
+    addVs: number; // 增加的透明度
   }[] = [];
   for (let i = 0; i < options.num; i++) {
     let obj = {
@@ -59,6 +61,7 @@ export function init(
     }
   }, 60);
 }
+// 画星星
 function drawStar(ctx: CanvasRenderingContext2D, starOption: IStarIptions) {
   let angle = 360 / (starOption.num * 2);
   let arr = [];

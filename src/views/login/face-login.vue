@@ -23,13 +23,8 @@
 import '@/assets/tracking/build/tracking-min.js';
 import '@/assets/tracking/build/data/face-min.js';
 import { onMounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
 import { faceLogin } from '@/api/login'
 import { loginSuccess } from '@/utils/loginSuccess'
-import { ElMessage } from 'element-plus';
-import { TOKEN } from '@/stroage/stroage_types';
-import storage from 'store'
-const router = useRouter()
 const trackerTask = ref<any>(null)
 const mediaStreamTrack = ref<any>(null)
 const video = ref<any>(null)

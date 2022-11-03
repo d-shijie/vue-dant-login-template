@@ -39,7 +39,7 @@ import { Message, Iphone } from '@element-plus/icons-vue'
 import { reactive, ref, h } from 'vue';
 import { getPhoneCaptcha, phoneLogin } from '@/api/login'
 import { ElNotification } from 'element-plus'
-import SliderVerify from './modules/slider-verify.vue'
+import SliderVerify from '@/components/slider-verify/index.vue'
 import { ElMessage } from 'element-plus'
 import { loginSuccess } from '@/utils/loginSuccess'
 
