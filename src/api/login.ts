@@ -17,3 +17,9 @@ export function getCaptcha() {
     method: "get",
   });
 }
+export function faceLogin() {
+  return request({
+    url: "/user/faceLogin",
+    method: "post",
+  });
+}

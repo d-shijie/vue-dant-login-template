@@ -54,3 +54,6 @@ Mock.mock("/api/user/login", "post", (options: { body: any }) => {
   }
 });
 Mock.mock("/api/user/captcha", "get", captchaData);
+Mock.mock("/api/user/faceLogin", "post", () => {
+  return userData;
+});

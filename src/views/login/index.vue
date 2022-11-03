@@ -10,6 +10,9 @@
         <el-tab-pane label="人脸登录" name="FaceLogin">
           <FaceLogin />
         </el-tab-pane>
+        <el-tab-pane label="手机登录" name="PhoneLogin">
+          <PhoneLogin />
+        </el-tab-pane>
       </el-tabs>
 
     </div>
@@ -21,7 +24,7 @@ import { onMounted, ref } from 'vue';
 import { init } from '@/canvas/skyStar/render'
 import UserLogin from './user-login.vue'
 import FaceLogin from './face-login.vue'
-
+import PhoneLogin from './phone-login.vue';
 const activeName = ref('UserLogin')
 
 onMounted(() => {
