@@ -1,5 +1,5 @@
 {
-  "name": "dant-template",
+  "name": "vue-dant-login-template",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
