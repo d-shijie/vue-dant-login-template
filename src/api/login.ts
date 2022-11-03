@@ -4,6 +4,10 @@ interface ILogin {
   password: string;
   captcha?: string;
 }
+interface IPhoneLogin {
+  phone: string;
+  captcha: string;
+}
 export function login(data: ILogin) {
   return request({
     url: "/user/login",
@@ -17,9 +21,22 @@ export function getCaptcha() {
     method: "get",
   });
 }
+export function getPhoneCaptcha() {
+  return request({
+    url: "/user/phoneCaptcha",
+    method: "get",
+  });
+}
 export function faceLogin() {
   return request({
     url: "/user/faceLogin",
     method: "post",
+  });
+}
+export function phoneLogin(data: IPhoneLogin) {
+  return request({
+    url: "/user/phoneLogin",
+    method: "post",
+    data,
   });
 }

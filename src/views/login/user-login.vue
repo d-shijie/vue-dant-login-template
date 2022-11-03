@@ -38,17 +38,11 @@
   </div>
 </template>
 
-
-
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { User, Lock, Message } from '@element-plus/icons-vue'
-import { TOKEN } from '@/stroage/stroage_types'
 import { login, getCaptcha } from '@/api/login'
-import { ElMessage } from 'element-plus'
-import { useRouter } from 'vue-router';
-import storage from 'store'
-const router = useRouter()
+import { loginSuccess } from '@/utils/loginSuccess'
 const loginFormRef = ref()
 const loading = ref(false)
 const captchaLoading = ref(false)
@@ -74,12 +68,7 @@ const loginState = reactive({
         loginState.loginForm
       ).then(res => {
         loading.value = false
-        if (!res.data.data) {
-          ElMessage.error(res.data)
-          return
-        }
-        storage.set(TOKEN, res.data.data.token)
-        router.push('/')
+        loginSuccess(res.data)
       })
     })
   }

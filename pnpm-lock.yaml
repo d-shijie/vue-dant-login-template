@@ -27,6 +27,7 @@ specifiers:
   vite: ^3.1.8
   vitest: ^0.24.3
   vue: ^3.2.41
+  vue-monoplasty-slide-verify: ^1.3.1
   vue-router: ^4.1.5
   vue-tsc: ^1.0.8
 
@@ -40,6 +41,7 @@ dependencies:
   sass: 1.55.0
   store: 2.0.12
   vue: 3.2.41
+  vue-monoplasty-slide-verify: 1.3.1
   vue-router: 4.1.6_vue@3.2.41
 
 devDependencies:
@@ -781,6 +783,14 @@ packages:
       '@vue/compiler-core': 3.2.41
       '@vue/shared': 3.2.41
 
+  /@vue/compiler-sfc/2.7.13:
+    resolution: {integrity: sha512-zzu2rLRZlgIU+OT3Atbr7Y6PG+LW4wVQpPfNRrGDH3dM9PsrcVfa+1pKb8bW467bGM3aDOvAnsYLWVpYIv3GRg==}
+    dependencies:
+      '@babel/parser': 7.20.0
+      postcss: 8.4.18
+      source-map: 0.6.1
+    dev: false
+
   /@vue/compiler-sfc/3.2.41:
     resolution: {integrity: sha512-+1P2m5kxOeaxVmJNXnBskAn3BenbTmbxBxWOtBq3mQTCokIreuMULFantBUclP0+KnzNCMOvcnKinqQZmiOF8w==}
     dependencies:
@@ -1219,6 +1229,10 @@ packages:
 
   /csstype/2.6.21:
     resolution: {integrity: sha512-Z1PhmomIfypOpoMjRQB70jfvy/wxT50qW08YXO5lMIJkrdq4yOTR+AW7FqutScmB9NkLwxo+jU+kZLbofZZq/w==}
+
+  /csstype/3.1.1:
+    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
+    dev: false
 
   /data-urls/3.0.2:
     resolution: {integrity: sha512-Jy/tj3ldjZJo63sVAvg6LHt2mHvl4V6AgRAmNDtLdm7faqtsx+aJG42rsyCo9JCoRVKwPFzKlIPx3DIibwSIaQ==}
@@ -3254,6 +3268,13 @@ packages:
       - supports-color
     dev: true
 
+  /vue-monoplasty-slide-verify/1.3.1:
+    resolution: {integrity: sha512-oMP9RdBo/2M2D8CcEE1IJCXKWOGPUyFNKFgMwj8+BMEA5Je4wF3jUbCnQe/hNNmV1cUBdeTNp0w/TdlP1A96SQ==}
+    engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
+    dependencies:
+      vue: 2.7.13
+    dev: false
+
   /vue-router/4.1.6_vue@3.2.41:
     resolution: {integrity: sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==}
     peerDependencies:
@@ -3280,6 +3301,13 @@ packages:
       '@volar/vue-typescript': 1.0.9
       typescript: 4.7.4
     dev: true
+
+  /vue/2.7.13:
+    resolution: {integrity: sha512-QnM6ULTNnPmn71eUO+4hdjfBIA3H0GLsBnchnI/kS678tjI45GOUZhXd0oP/gX9isikXz1PAzSnkPspp9EUNfQ==}
+    dependencies:
+      '@vue/compiler-sfc': 2.7.13
+      csstype: 3.1.1
+    dev: false
 
   /vue/3.2.41:
     resolution: {integrity: sha512-uuuvnrDXEeZ9VUPljgHkqB5IaVO8SxhPpqF2eWOukVrBnRBx2THPSGQBnVRt0GrIG1gvCmFXMGbd7FqcT1ixNQ==}

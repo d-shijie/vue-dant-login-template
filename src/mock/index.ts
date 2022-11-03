@@ -57,3 +57,16 @@ Mock.mock("/api/user/captcha", "get", captchaData);
 Mock.mock("/api/user/faceLogin", "post", () => {
   return userData;
 });
+Mock.mock("/api/user/phoneCaptcha", "get", () => {
+  return {
+    captcha: "dant",
+  };
+});
+Mock.mock("/api/user/phoneLogin", "post", (options: { body: any }) => {
+  const { phone, captcha } = JSON.parse(options.body);
+  if (phone !== "" && captcha === "dant") {
+    return userData;
+  } else {
+    return "登录失败";
+  }
+});

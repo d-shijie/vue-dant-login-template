@@ -25,6 +25,7 @@ import '@/assets/tracking/build/data/face-min.js';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { faceLogin } from '@/api/login'
+import { loginSuccess } from '@/utils/loginSuccess'
 import { ElMessage } from 'element-plus';
 import { TOKEN } from '@/stroage/stroage_types';
 import storage from 'store'
@@ -78,13 +79,8 @@ const screenshotAndUpload = () => {
   let base64Img = canvas.toDataURL('image/jpeg');
 
   faceLogin().then(res => {
-    if (!res.data.data) {
-      ElMessage.error(res.data)
-      return
-    }
-    storage.set(TOKEN, res.data.data.token)
+    loginSuccess(res.data)
     destroyed()
-    router.push('/')
     // 请求接口成功以后打开锁
     uploadLock.value = true;
   })
