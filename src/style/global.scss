@@ -11,3 +11,15 @@
 .wrapper {
   background-image: -webkit-linear-gradient(top, #000, #098);
 }
+.el-tabs__item.is-active{
+color: $tap-color-active !important;
+}
+.el-tabs__item:hover {
+  color: $tap-color-active;
+}
+.el-tabs__nav-wrap::after{
+  background-color:$tap-color;
+}
+.el-tabs__active-bar {
+  background-color:$tap-color-active;
+}

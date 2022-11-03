@@ -14,7 +14,7 @@ import storage from "store";
 const router = useRouter()
 const logout = () => {
   storage.remove(TOKEN);
-  router.push('/')
+  router.push('/login')
 };
 onMounted(() => {
   const WINDOW_WIDTH = document.documentElement.clientWidth;
