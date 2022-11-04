@@ -11,7 +11,6 @@ export const checkPassword = (rule: any, value: any, callback: any) => {
       /^[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、]+$/;
     if (regex1.test(value) || regex2.test(value) || regex3.test(value)) {
       callback("弱爆了");
-      callback();
     } else if (
       /^[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、\d]+$/.test(
         value
@@ -22,13 +21,11 @@ export const checkPassword = (rule: any, value: any, callback: any) => {
       /^[A-Za-z\d]+$/.test(value)
     ) {
       callback("还不错");
-      callback();
     } else if (
       /^[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、A-Za-z\d]+$/.test(
         value
       )
     ) {
-      callback("太牛了");
       callback();
     }
   }

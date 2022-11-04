@@ -31,8 +31,6 @@ const video = ref<any>(null)
 const screenshotCanvas = ref<any>(null)
 const uploadLock = ref<boolean>(true)
 onMounted(() => {
-  console.log(1);
-
   init()
 })
 

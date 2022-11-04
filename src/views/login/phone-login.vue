@@ -67,7 +67,6 @@ const loginState = reactive({
   verifySuccess: () => {
     getPhoneCaptcha().then(res => {
       clearInterval(timer.value)
-      console.log(res);
       ElNotification({
         title: '您好',
         message: h('i', { style: 'color: teal' }, '您的验证码为：' + res.data.captcha),
@@ -144,9 +143,5 @@ const loginState = reactive({
     margin-left: 20px;
     overflow: hidden;
   }
-}
-
-.el-dialog {
-  background-color: red;
 }
 </style>

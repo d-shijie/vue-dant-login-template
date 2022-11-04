@@ -4,8 +4,10 @@
       <div class="title" style="text-align:center">
         <span>DANT TEMPLATE</span>
       </div>
-      <el-form ref="loginFormRef" :hide-required-asterisk="true" label-width="54px" :model="loginState.loginForm"
-        :rules="loginState.loginRule">
+      <Register v-if="store.flag === 'register'" />
+      <ForgetPassword v-if="store.flag === 'forgetPassword'" />
+      <el-form v-if="store.flag === 'userLogin'" ref="loginFormRef" :hide-required-asterisk="true" label-width="54px"
+        :model="loginState.loginForm" :rules="loginState.loginRule">
         <el-form-item label="账号" prop="username">
           <el-input size="large" v-model="loginState.loginForm.username" :prefix-icon="User">
           </el-input>
@@ -30,8 +32,8 @@
           <el-button size="large" style="width:100%;" :loading="loading" @click="loginState.userLogin">登 录</el-button>
         </div>
         <div class="forget_register">
-          <span>忘记密码</span>
-          <span>注册账号</span>
+          <span @click="store.SET_FLAG('forgetPassword')">忘记密码</span>
+          <span @click="store.SET_FLAG('register')">注册账号</span>
         </div>
       </el-form>
     </el-card>
@@ -43,6 +45,10 @@ import { reactive, ref } from 'vue';
 import { User, Lock, Message } from '@element-plus/icons-vue'
 import { login, getCaptcha } from '@/api/login'
 import { loginSuccess } from '@/utils/loginSuccess'
+import ForgetPassword from './modules/forget-password.vue'
+import Register from './modules/register.vue'
+import { useControlStore } from '@/stores/control';
+const store = useControlStore()
 const loginFormRef = ref()
 const loading = ref(false)
 const captchaLoading = ref(false)
