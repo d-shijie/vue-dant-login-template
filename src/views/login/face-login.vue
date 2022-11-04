@@ -22,7 +22,7 @@
 <script lang="ts" setup>
 import '@/assets/tracking/build/tracking-min.js';
 import '@/assets/tracking/build/data/face-min.js';
-import { onMounted, ref } from 'vue';
+import { onActivated, onMounted, ref } from 'vue';
 import { faceLogin } from '@/api/login'
 import { loginSuccess } from '@/utils/loginSuccess'
 const trackerTask = ref<any>(null)
@@ -31,8 +31,11 @@ const video = ref<any>(null)
 const screenshotCanvas = ref<any>(null)
 const uploadLock = ref<boolean>(true)
 onMounted(() => {
+  console.log(1);
+
   init()
 })
+
 const init = () => {
   video.value = mediaStreamTrack.value = document.getElementById('video');
   screenshotCanvas.value = document.getElementById('screenshotCanvas');

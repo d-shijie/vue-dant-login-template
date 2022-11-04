@@ -18,6 +18,9 @@
         <el-tab-pane label="二维码登录" name="QrLogin">
           <QrLogin />
         </el-tab-pane>
+        <el-tab-pane label="第三方登录" name="ThirdPartyLogin">
+          <ThirdPartyLogin />
+        </el-tab-pane>
       </el-tabs>
     </div>
   </div>
@@ -30,6 +33,7 @@ import UserLogin from './user-login.vue'
 import FaceLogin from './face-login.vue'
 import PhoneLogin from './phone-login.vue';
 import QrLogin from './qr-login.vue';
+import ThirdPartyLogin from './third-party-login.vue'
 const activeName = ref('UserLogin')
 
 onMounted(() => {
